@@ -1,0 +1,38 @@
+
+	RECORD *temporary_first;
+        temporary_first->next=*first;
+
+        RECORD *temporary_new_first;
+
+        RECORD *temporary_new;
+
+        temporary_new_first->next=temporary_new;
+
+        RECORD *curr;
+
+        RECORD *prev;
+        prev=temporary_first;
+
+        for(i=0;i<city_count;i++)
+        {
+            read=temporary_first->next;
+            prev=temporary_first;
+            while(read!=NULL)
+            {
+                curr=read;
+                read=read->next;
+                if(strcmp(cities[i],curr->place)==0)
+                {
+                    temporary_new=curr;
+                    prev->next=curr->next;
+                    temporary_new->next=NULL;
+                    temporary_new=temporary_new->next;
+                }
+                else
+                {
+                    prev=curr;
+                }
+            }
+        }
+
+        *first=temporary_new_first->next;
